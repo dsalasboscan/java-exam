@@ -29,6 +29,7 @@ public class RegisterUserRepository {
   public User persist(User user) {
     Session session = sessionFactory.getCurrentSession();
     session.persist(user);
+    user.getPhones().forEach(phone -> phone.setUser(user));
     return user;
   }
 

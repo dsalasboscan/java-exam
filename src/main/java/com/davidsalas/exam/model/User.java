@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,8 +37,12 @@ public class User {
 
   private String password;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-  private List<Phone> phones;
+  public void addPhone(Phone phone) {
+    phones.add(phone);
+  }
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  private List<Phone> phones = new ArrayList<>();
 
   @Column(name = "creation_date", columnDefinition = "TIMESTAMP")
   private LocalDateTime createdDate;

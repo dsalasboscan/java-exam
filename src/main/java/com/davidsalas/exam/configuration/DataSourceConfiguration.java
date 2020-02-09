@@ -25,7 +25,7 @@ public class DataSourceConfiguration {
 
   @PostConstruct
   public void setUpDatabases() {
-    DatabasePopulatorUtils.execute(this.createDatabasePopulator(new String[]{"sql-scripts/persist-users.sql"}), dataSource());
+    DatabasePopulatorUtils.execute(this.createDatabasePopulator(new String[]{"sql-scripts/db-ddl.sql"}), dataSource());
   }
 
   @Bean

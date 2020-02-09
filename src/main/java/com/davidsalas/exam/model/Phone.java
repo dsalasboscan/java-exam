@@ -34,6 +34,7 @@ public class Phone {
   @Column(name = "country_code")
   private String countryCode;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @ManyToOne
+  @JoinColumn(name = "user_id", referencedColumnName = "id")
   private User user;
 }
