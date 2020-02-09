@@ -1,6 +1,6 @@
 package com.davidsalas.exam.model.dto.validation;
 
-import com.davidsalas.exam.exception.custom.InvalidPasswordException;
+import com.davidsalas.exam.exception.custom.PasswordInvalidFormatException;
 import org.passay.*;
 
 import javax.validation.ConstraintValidator;
@@ -26,6 +26,6 @@ public class PasswordConstraintValidator implements ConstraintValidator<ValidPas
       return true;
     }
 
-    throw new InvalidPasswordException(result.getDetails().toString());
+    throw new PasswordInvalidFormatException(result.getDetails().toString());
   }
 }

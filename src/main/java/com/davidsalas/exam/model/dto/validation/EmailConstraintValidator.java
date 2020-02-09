@@ -1,6 +1,6 @@
 package com.davidsalas.exam.model.dto.validation;
 
-import com.davidsalas.exam.exception.custom.InvalidEmailFormatException;
+import com.davidsalas.exam.exception.custom.EmailInvalidFormatException;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.validation.ConstraintValidator;
@@ -15,7 +15,7 @@ public class EmailConstraintValidator implements ConstraintValidator<ValidEmail,
   @Override
   public boolean isValid(String value, ConstraintValidatorContext context) {
     if (!EmailValidator.getInstance().isValid(value)) {
-      throw new InvalidEmailFormatException(value);
+      throw new EmailInvalidFormatException(value);
     }
     return true;
   }
