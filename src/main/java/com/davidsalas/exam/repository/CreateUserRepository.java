@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 
 @Repository
-public class PersistUserRepository {
+public class CreateUserRepository {
 
   private SessionFactory sessionFactory;
 
   @Autowired
-  public PersistUserRepository(SessionFactory sessionFactory) {
+  public CreateUserRepository(SessionFactory sessionFactory) {
     this.sessionFactory = sessionFactory;
   }
 

@@ -1,10 +1,12 @@
 package com.davidsalas.exam.controller;
 
-import com.davidsalas.exam.model.dto.ResponseDto;
+import com.davidsalas.exam.model.dto.Response;
 import com.davidsalas.exam.model.dto.UserDto;
-import com.davidsalas.exam.service.PersistUserService;
+import com.davidsalas.exam.service.CreateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-public class PersistUserController {
+public class CreateUserController {
 
-  private PersistUserService persistUserService;
+  private CreateUserService createUserService;
 
-  public PersistUserController(@Autowired PersistUserService persistUserService) {
-    this.persistUserService = persistUserService;
+  public CreateUserController(@Autowired CreateUserService createUserService) {
+    this.createUserService = createUserService;
   }
 
   @PostMapping(
@@ -25,7 +27,7 @@ public class PersistUserController {
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public ResponseDto createUser(@Valid @RequestBody UserDto userDto) {
-    return persistUserService.createUser(userDto);
+  public ResponseEntity<Response> createUser(@Valid @RequestBody UserDto userDto) {
+    return createUserService.createUser(userDto).returnHttpResponse(HttpStatus.CREATED);
   }
 }
