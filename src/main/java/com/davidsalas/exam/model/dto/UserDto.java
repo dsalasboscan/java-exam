@@ -1,8 +1,9 @@
 package com.davidsalas.exam.model.dto;
 
+import com.davidsalas.exam.model.dto.validation.ValidEmail;
+import com.davidsalas.exam.model.dto.validation.ValidPassword;
 import lombok.Data;
 
-import javax.validation.constraints.Email;
 import java.util.List;
 
 @Data
@@ -10,9 +11,10 @@ public class UserDto {
 
   private String name;
 
-  @Email
+  @ValidEmail
   private String email;
 
+  @ValidPassword
   private String password;
 
   private List<PhoneDto> phones;

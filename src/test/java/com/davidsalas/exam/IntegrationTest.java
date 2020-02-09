@@ -41,20 +41,31 @@ public class IntegrationTest {
   }
 
   @Test
-  public void persistUserOk() throws Exception {
-    postRequest(getUserDtoAsString())
-        .andExpect(status().is(200));
+  public void createUserOk() throws Exception {
+    postRequest(getUserDtoAsString("pperez@mail.com", "Admin123#"))
+        .andExpect(status().isCreated());
   }
 
-  private String getUserDtoAsString() throws JsonProcessingException {
-    return objectMapper.writeValueAsString(createUserDto());
+  @Test
+  public void createUserIncorrectEmailFormat() throws Exception {
+    // If the email format is not 'aaaa@domain.com' then the user creation process fails with an error message
+
+    postRequest(getUserDtoAsString("pperezmail.com", "Admin123#"))
+        .andExpect(status().isBadRequest());
+
   }
 
-  private UserDto createUserDto() {
+  private String getUserDtoAsString(String email, String password) throws JsonProcessingException {
+    return objectMapper.writeValueAsString(
+        createUserDto(email, password)
+    );
+  }
+
+  private UserDto createUserDto(String email, String password) {
     return new UserDto(
         "Pedro perez",
-        "pperez@mail.com",
-        "admin123",
+        email,
+        password,
         createPhonesDto()
     );
   }

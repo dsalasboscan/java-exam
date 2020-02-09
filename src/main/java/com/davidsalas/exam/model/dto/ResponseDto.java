@@ -5,14 +5,13 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ResponseDto {
+public class ResponseDto implements Response {
   private String uuid;
   private LocalDateTime created;
   private LocalDateTime modified;
   private LocalDateTime lastLogin;
   private String token;
   private boolean isActive;
-
 
   public ResponseDto(String uuid, LocalDateTime created, LocalDateTime modified, LocalDateTime lastLogin, String token, boolean isActive) {
     this.uuid = uuid;
