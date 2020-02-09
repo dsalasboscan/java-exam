@@ -39,16 +39,23 @@ public class RegisterUserService {
   }
 
   public ResponseDto register(UserDto userDto) {
+    registerUserRepository.checkIfEmailExist(userDto.getEmail());
+
     User user = userDtoMapper.mapToUser(userDto);
 
     encodePassword(user);
+    initializeDates(user);
 
-    user.setCreatedDate(LocalDateTime.now());
-    user.setModifiedDate(LocalDateTime.now());
-    user.setLastLoginDate(LocalDateTime.now());
     user.setToken(jwtTokenService.createToken(user.getName()));
 
     return userMapper.mapToResponseDto(registerUserRepository.persist(user));
+  }
+
+  private void initializeDates(User user) {
+    LocalDateTime localDateTime = LocalDateTime.now();
+    user.setCreatedDate(localDateTime);
+    user.setModifiedDate(localDateTime);
+    user.setLastLoginDate(localDateTime);
   }
 
   private void encodePassword(User user) {
