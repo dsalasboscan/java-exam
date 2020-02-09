@@ -22,6 +22,8 @@ public class DataSourceConfiguration {
   private static final String PACKAGE_TO_SCAN = "com.davidsalas.exam";
   private static final String DRIVER_CLASS_NAME = "org.h2.Driver";
   private static final String DATABASE_CONNECTION_STRING = "jdbc:h2:mem:db";
+  private static final String DATABASE_USERNAME = "sa";
+  private static final String DATABASE_PASSWORD = "sa";
 
   @PostConstruct
   public void setUpDatabases() {
@@ -33,8 +35,8 @@ public class DataSourceConfiguration {
     BasicDataSource dataSource = new BasicDataSource();
     dataSource.setDriverClassName(DRIVER_CLASS_NAME);
     dataSource.setUrl(DATABASE_CONNECTION_STRING);
-    dataSource.setUsername("sa");
-    dataSource.setPassword("sa");
+    dataSource.setUsername(DATABASE_USERNAME);
+    dataSource.setPassword(DATABASE_PASSWORD);
 
     return dataSource;
   }
