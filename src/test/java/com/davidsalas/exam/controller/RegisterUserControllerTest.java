@@ -1,4 +1,4 @@
-package com.davidsalas.exam;
+package com.davidsalas.exam.controller;
 
 import com.davidsalas.exam.model.dto.UserDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ApplicationTest {
+public class RegisterUserControllerTest {
 
   @Autowired
   private WebApplicationContext wac;
